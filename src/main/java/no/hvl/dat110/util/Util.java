@@ -45,9 +45,26 @@ public class Util {
 		
 		// Task: given an identifier, id: check whether pred < id <= node
 		
-		return false;
 
+		boolean sjekk = false;
+
+		BigInteger adressSize = Hash.addressSize();
+
+		if(lower.compareTo(upper) > 0){
+			if(id.compareTo(upper) <= 0){
+				id = id.add(adressSize);
+			}
+			upper = upper.add(adressSize);
+		}
+
+		if((lower.compareTo(id) <= 0) && (id.compareTo(upper) <= 0)){
+			sjekk = true;
+		}
+		return sjekk;
 	}
+		
+		
+
 	
 	public static List<String> toString(List<NodeInterface> list) throws RemoteException {
 		List<String> nodestr = new ArrayList<String>();
